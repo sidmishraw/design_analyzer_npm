@@ -13,7 +13,7 @@ The output will be in table-format in which columns represent metrics and rows c
 ### An Example:
 Lets assume we use StarUML to create a project called HR:
 
-[](./image002.jpg)
+![](./image002.jpg)
 
 StarUML saves the project in a file called hr.mdj. This file contains a single JSON object that reflects the tree-like structure depicted in the explorer panel to the right of the diagram. You can get a collapsible/expandable look at this huge object by pasting the contents of the file into a JSON formatter/validator.
 
