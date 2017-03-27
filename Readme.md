@@ -19,6 +19,7 @@ StarUML saves the project in a file called hr.mdj. This file contains a single J
 
 Here's the basic structure of the JSON object contained in hr.mdj:
 
+```
 {
 
    "_type": "Project",
@@ -36,6 +37,7 @@ Here's the basic structure of the JSON object contained in hr.mdj:
       }
    ]
 }
+```
 
 We can see that the top-level JSON object, which represents the entire project, has four fields: _type, _id, name ("HR"), and an array of owned elements.
 
@@ -47,6 +49,7 @@ The class diagram object is long and complicated. For each box, arrow, and label
 
 Next come the four class objects. Here's the JSON object representing the Employee class. Notice that it has arrays holding its owned elements (only the association to the Manager class), its attributes (salary, name, and id), and its operations (job and nextID).
 
+```
 {
    "_type": "UMLClass",
    "_id": "AAAAAAFLhnPAnH64Mg8=",
@@ -61,9 +64,11 @@ Next come the four class objects. Here's the JSON object representing the Employ
    "isLeaf": false,
    "isActive": false
 }
+```
 
 Our Employer-Manager association doesn't have a name (although it could). Here's what it looks like:
 
+```
 {
    "_type": "UMLAssociation",
    "_id": "AAAAAAFLhn7ApIEXikk=",
@@ -73,9 +78,11 @@ Our Employer-Manager association doesn't have a name (although it could). Here's
    "visibility": "public",
    "isDerived": false
 }
+```
 
 Each association has two endpoints. End1 is the side connected to the Employee class, end2 connects to the Manager class. The reference number is the id of the associated class: Here's the end2 object:
 
+```
 {
    "_type": "UMLAssociationEnd",
    "_id": "AAAAAAFLhn7ApIEZWH8=",
@@ -92,9 +99,11 @@ Each association has two endpoints. End1 is the side connected to the Employee c
    "isDerived": false,
    "isID": false
 }
+```
 
 Here's the salary attribute:
 
+```
 {
    "_type": "UMLAttribute",
    "_id": "AAAAAAFLhnUQgX8HarU=",
@@ -111,9 +120,11 @@ Here's the salary attribute:
    "aggregation": "none",
    "isID": false
 }
+```
 
 Here's the nextID operation, it contains an array of parameters:
 
+```
 {
    "_type": "UMLOperation",
    "_id": "AAAAAAFLhncCz38rbt0=",
@@ -127,9 +138,11 @@ Here's the nextID operation, it contains an array of parameters:
    "isQuery": false,
    "isAbstract": false
 }
+```
 
 The return type of an operation is considered to be a parameter with direction = "return":
 
+```
 {
    "_type": "UMLParameter",
    "_id": "AAAAAAFLhnclH38yalQ=",
@@ -143,10 +156,12 @@ The return type of an operation is considered to be a parameter with direction =
    "isUnique": false,
    "direction": "return"
 }
+```
 
 ### Sample run:
 Here's a sample run:
 
+```
 c:\demos>node ./main
 Enter file name: hr.mdj
 project classes:
@@ -163,8 +178,7 @@ project classes:
   Manager
     operations:
       fire
-
-
+```
 
 
 
