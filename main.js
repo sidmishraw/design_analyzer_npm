@@ -2,7 +2,7 @@
  * @Author: Sidharth Mishra
  * @Date:   2017-03-26 21:24:49
  * @Last Modified by:   Sidharth Mishra
- * @Last Modified time: 2017-03-27 15:20:12
+ * @Last Modified time: 2017-03-27 15:56:58
  */
 
 'use strict'
@@ -16,12 +16,19 @@ const readline = require('readline')
 
 
 
+// design analyzer specfic imports
+const danalyzer = require("./analyzer.js")
+
+
+
+
 // set stdin and stdout as the IO for this application
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 })
 const codec = 'utf8'
+
 
 
 
@@ -48,7 +55,7 @@ function analyze(filename) {
             return false
         }
 
-        console.log(JSON.stringify(project_structure, null, 4))
+        danalyzer.analyze_parsed_mdj(project_structure)
     })
 
     return true
