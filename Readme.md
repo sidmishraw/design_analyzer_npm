@@ -181,5 +181,35 @@ project classes:
 ```
 
 
+### Sample output for the above hr class diagram(I made a new .mdj file having the class diagram)
+```
+sidmishraw@Sidharths-MBP ~/D/w/design_analyzer_npm> node main.js
+:::Design Analyzer:::
+Enter file name:design_analyzer.mdj
+Design metrics for design_analyzer.mdj:
+{
+    "Employee": {
+        "stability": 0.75,
+        "responsibility": 0.75,
+        "deviance": 0
+    },
+    "Company": {
+        "stability": 0.75,
+        "responsibility": 0,
+        "deviance": 0.75
+    },
+    "Programmer": {
+        "stability": 0.75,
+        "responsibility": 0,
+        "deviance": 0.75
+    },
+    "Manager": {
+        "stability": 0.75,
+        "responsibility": 0.25,
+        "deviance": 0.5
+    }
+}
+```
+
 
 
