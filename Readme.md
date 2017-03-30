@@ -211,5 +211,15 @@ Design metrics for design_analyzer.mdj:
 }
 ```
 
+And the tabular output looks like:
+
+```
+class       responsibility  stability  deviance
+----------  --------------  ---------  --------
+Employee    0.75            0.75       0       
+Company     0               0.75       0.75    
+Programmer  0               0.75       0.75    
+Manager     0.25            0.75       0.5     
+```
 
 

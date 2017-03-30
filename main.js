@@ -2,7 +2,7 @@
  * @Author: Sidharth Mishra
  * @Date:   2017-03-26 21:24:49
  * @Last Modified by:   Sidharth Mishra
- * @Last Modified time: 2017-03-30 15:01:57
+ * @Last Modified time: 2017-03-30 15:37:41
  */
 
 'use strict'
@@ -94,7 +94,7 @@ function analyze(filename) {
         let result = danalyzer.analyze_parsed_mdj(project_structure)
 
         console.log(`Design metrics for ${filename}:`)
-        console.log(JSON.stringify(result, null, 4));
+        // console.log(JSON.stringify(result, null, 4))
         display_table(result)
     })
 
