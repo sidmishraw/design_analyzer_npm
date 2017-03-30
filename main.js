@@ -2,7 +2,7 @@
  * @Author: Sidharth Mishra
  * @Date:   2017-03-26 21:24:49
  * @Last Modified by:   Sidharth Mishra
- * @Last Modified time: 2017-03-28 22:35:05
+ * @Last Modified time: 2017-03-30 15:01:57
  */
 
 'use strict'
@@ -12,6 +12,10 @@
 // NodeJS specific imports
 const fs = require('fs')
 const readline = require('readline')
+const util = require('util')
+
+// adding console.table for table like formatting in CLI.
+require('console.table')
 
 
 
@@ -32,6 +36,38 @@ const codec = 'utf8'
 
 
 
+// constants
+const __CLASS__ = "class"
+const RESPONSIBILITY = danalyzer.RESPONSIBILITY
+const STABILITY = danalyzer.STABILITY
+const DEVIANCE = danalyzer.DEVIANCE
+
+
+
+// creates the output table structure from the result JSON obtained
+function display_table(result) {
+
+    let table_result = []
+
+    Object.keys(result).map((class_name) => {
+
+        let table_row = {}
+
+        table_row[__CLASS__] = class_name
+        table_row[RESPONSIBILITY] = result[class_name][RESPONSIBILITY]
+        table_row[STABILITY] = result[class_name][STABILITY]
+        table_row[DEVIANCE] = result[class_name][DEVIANCE]
+
+        table_result.push(table_row)
+    })
+
+    console.table(table_result)
+}
+
+
+
+
+// analyzes the `.mdj` file to compute the design metrics
 function analyze(filename) {
 
     if (!filename) {
@@ -59,6 +95,7 @@ function analyze(filename) {
 
         console.log(`Design metrics for ${filename}:`)
         console.log(JSON.stringify(result, null, 4));
+        display_table(result)
     })
 
     return true

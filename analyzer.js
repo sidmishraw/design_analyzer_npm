@@ -2,7 +2,7 @@
  * @Author: Sidharth Mishra
  * @Date:   2017-03-27 15:41:57
  * @Last Modified by:   Sidharth Mishra
- * @Last Modified time: 2017-03-28 22:44:56
+ * @Last Modified time: 2017-03-30 14:38:40
  */
 
 'use strict'
@@ -239,6 +239,7 @@ function __compute_deviance__() {
 //
 // :param parsed_mdj_json: The parsed JSON obtained by parsing the `.mdj` file :class: `Object`
 //
+// :return: __result__ :class: `Object` (JSON)
 function analyze_parsed_mdj(parsed_mdj_json) {
 
     if (parsed_mdj_json[__TYPE__] !== __PROJECT__) {
@@ -259,6 +260,7 @@ function analyze_parsed_mdj(parsed_mdj_json) {
 
     // build the associations
     __build_associations__()
+
     // :todo: build operations dependence and factor them into computation for
     // stability, responsibility and deviance
 
@@ -283,3 +285,6 @@ module.exports.OWNEDELEMENTS = __OWNEDELEMENTS__
 module.exports.PARENT = __PARENT__
 module.exports.REF = __REF__
 module.exports.analyze_parsed_mdj = analyze_parsed_mdj
+module.exports.RESPONSIBILITY = __RESPONSIBILITY__
+module.exports.STABILITY = __STABILITY__
+module.exports.DEVIANCE = __DEVIANCE__
