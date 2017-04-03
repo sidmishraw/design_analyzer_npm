@@ -2,7 +2,7 @@
  * @Author: Sidharth Mishra
  * @Date:   2017-03-27 15:41:57
  * @Last Modified by:   Sidharth Mishra
- * @Last Modified time: 2017-03-30 14:38:40
+ * @Last Modified time: 2017-04-02 19:40:22
  */
 
 'use strict'
@@ -32,6 +32,7 @@ const __TARGET__ = "target"
 const __RESPONSIBILITY__ = "responsibility"
 const __STABILITY__ = "stability"
 const __DEVIANCE__ = "deviance"
+const __UMLMODEL__ = "UMLModel"
 
 
 
@@ -55,7 +56,7 @@ var __methods__ = {}
 
 
 
-// Unpacks the `UMLPackage` object and extracts the `UMLClass` objects from it
+// Unpacks the `UMLPackage` or `UMLModel`object and extracts the `UMLClass` objects from it
 // populating the __classes__ dictionary/map
 function __unpack_package__(package_object) {
 
@@ -113,6 +114,12 @@ function __build_associations__() {
 
         let uml_class_obj = __classes__[class_id]
 
+        if (uml_class_obj[__OWNEDELEMENTS__] === undefined ||
+            uml_class_obj[__OWNEDELEMENTS__] === null) {
+
+            return
+        }
+
         uml_class_obj[__OWNEDELEMENTS__].map((owned_element) => {
 
             if (owned_element[__TYPE__] === __UMLASSOCIATION__) {
@@ -165,8 +172,12 @@ function __compute_stability__() {
 
         let class_name = __classes__[class_id][__NAME__]
 
+        // Number((6.688689).toFixed(1))
+        // going to round stability to 2 decimal places
         let stability = 1 - ((__providers__[class_id] === undefined ? 0 :
             __providers__[class_id].length) / Object.keys(__classes__).length)
+
+        stability = Number(stability.toFixed(2))
 
         // console.log(stability)
 
@@ -192,8 +203,11 @@ function __compute_responsibility__() {
 
         let class_name = __classes__[class_id][__NAME__]
 
+        // going to round responsibility to 2 decimal places
         let responsibility = (__clients__[class_id] === undefined ? 0 :
             __clients__[class_id].length) / Object.keys(__classes__).length
+
+        responsibility = Number(responsibility.toFixed(2))
 
         // console.log(responsibility)
 
@@ -228,6 +242,9 @@ function __compute_deviance__() {
         let deviance = Math.abs(__result__[class_name][__RESPONSIBILITY__] -
             __result__[class_name][__STABILITY__])
 
+        // going to round deviance to 2 decimal places
+        deviance = Number(deviance.toFixed(2))
+
         __result__[class_name][__DEVIANCE__] = deviance
     })
 }
@@ -252,13 +269,16 @@ function analyze_parsed_mdj(parsed_mdj_json) {
 
     parsed_mdj_json[__OWNEDELEMENTS__].map((owned_element) => {
 
-        if (owned_element[__TYPE__] === __UMLPACKAGE__) {
+        if ((owned_element[__TYPE__] === __UMLPACKAGE__) ||
+            (owned_element[__TYPE__] === __UMLMODEL__)) {
 
             __unpack_package__(owned_element)
         }
     })
 
     // build the associations
+    // console.log(JSON.stringify(__classes__, null, 2))
+
     __build_associations__()
 
     // :todo: build operations dependence and factor them into computation for
